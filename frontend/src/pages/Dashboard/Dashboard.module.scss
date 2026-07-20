@@ -1,0 +1,79 @@
+.dashboard{
+
+    width:90%;
+    margin:40px auto;
+
+}
+
+.header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.filters{
+
+    display:flex;
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+.filters input{
+
+    flex:1;
+
+}
+
+.filters button{
+
+    background:#2563eb;
+    color:white;
+
+    padding:10px 20px;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+    background:white;
+
+}
+
+th,td{
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    text-align:left;
+
+}
+
+th{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.pagination{
+
+    margin-top:25px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
