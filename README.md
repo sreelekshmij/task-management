@@ -296,6 +296,10 @@ Authorization: Bearer <JWT_TOKEN>
 
 ---
 
+# Validation
+
+Using Yup validation with useForm hook in frontend.
+
 # Notes
 
 - Passwords are securely hashed using **bcrypt**.
