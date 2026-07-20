@@ -16,14 +16,14 @@ async function startServer() {
       throw error;
     }
 
-    console.log("✅ Supabase Connected Successfully");
+    console.log("Supabase Connected Successfully");
 
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
+      console.log(`Server running on http://localhost:${PORT}`);
     });
 
   } catch (err) {
-    console.error("❌ Failed to connect to Supabase");
+    console.error("Failed to connect to Supabase");
     console.error(err.message);
     process.exit(1);
   }

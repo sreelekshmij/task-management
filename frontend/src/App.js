@@ -5,16 +5,24 @@ import SignUp from "./pages/SignUp/SignUp";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
+import PublicRoute from "./routes/PublicRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
 
-        {/* Protected Routes */}
+        <Route path="/" element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        } />
+        <Route path="/signup" element={
+          <PublicRoute>
+            <SignUp />
+          </PublicRoute>
+        } />
+
         <Route
           path="/dashboard"
           element={
@@ -24,7 +32,6 @@ function App() {
           }
         />
 
-        {/* Redirect unknown routes */}
         <Route path="*" element={<Login />} />
       </Routes>
     </BrowserRouter>

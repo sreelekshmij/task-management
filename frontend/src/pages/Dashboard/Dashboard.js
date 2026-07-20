@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Dashboard.module.scss";
 import TaskModal from "../../components/TaskModal";
+import DeleteModal from "../../components/DeleteModal";
+import LogoutModal from "../../components/LogoutModal";
 
 const Dashboard = () => {
     const token = localStorage.getItem("token");
@@ -12,6 +14,9 @@ const Dashboard = () => {
     const [status, setStatus] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const [selectedTaskId, setSelectedTaskId] = useState(null);
 
     const fetchTasks = async () => {
         try {
@@ -44,7 +49,7 @@ const Dashboard = () => {
         <div className={styles.dashboard}>
             <div className={styles.header}>
                 <h2>Task Manager</h2>
-                <button>
+                <button onClick={() => setShowLogoutModal(true)}>
                     Logout
                 </button>
             </div>
@@ -94,6 +99,7 @@ const Dashboard = () => {
                                 <td>{task.created_at}</td>
                                 <td>
                                     <button
+                                        className={styles.editBtn}
                                         onClick={() => {
                                             setSelectedTask(task);
                                             setShowModal(true);
@@ -101,7 +107,15 @@ const Dashboard = () => {
                                     >
                                         Edit
                                     </button>
-                                    <button>Delete</button>
+                                    <button
+                                        className={styles.deleteBtn}
+                                        onClick={() => {
+                                            setSelectedTaskId(task.id);
+                                            setShowDeleteModal(true);
+                                        }}
+                                    >
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))
@@ -117,9 +131,7 @@ const Dashboard = () => {
                     Previous
                 </button>
                 <span>
-
                     {page} / {pagination.totalPages || 1}
-
                 </span>
                 <button
                     disabled={page === pagination.totalPages}
@@ -134,6 +146,22 @@ const Dashboard = () => {
                         task={selectedTask}
                         onClose={() => setShowModal(false)}
                         fetchTasks={fetchTasks}
+                    />
+                )
+            }
+            {
+                showDeleteModal && (
+                    <DeleteModal
+                        taskId={selectedTaskId}
+                        onClose={() => setShowDeleteModal(false)}
+                        fetchTasks={fetchTasks}
+                    />
+                )
+            }
+            {
+                showLogoutModal && (
+                    <LogoutModal
+                        onClose={() => setShowLogoutModal(false)}
                     />
                 )
             }
